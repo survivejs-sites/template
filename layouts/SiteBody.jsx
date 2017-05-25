@@ -5,6 +5,11 @@ import Feedback from '../components/Feedback';
 import Footer from '../components/Footer';
 import Navigation from '../components/Navigation';
 
+import '../styles/custom.scss';
+import '../styles/prism.css';
+import '../styles/fontello-codes.css';
+import '../styles/fontello-embedded.css';
+
 const navigationPages = (sectionName) => ([
   {
     title: 'Home',

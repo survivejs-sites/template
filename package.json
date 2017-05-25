@@ -34,6 +34,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.2",
     "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
     "front-matter": "^2.1.2",
     "gh-pages": "^1.0.0",
     "loader-utils": "^1.1.0",
@@ -52,6 +53,7 @@
     "remove-markdown": "^0.1.0",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.1",
+    "url-loader": "^0.5.8",
     "webpack": "^2.6.0",
     "webpack-dev-server": "^2.4.5",
     "webpack-merge": "^4.1.0"

@@ -3,11 +3,9 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const merge = require('webpack-merge');
+const autoprefixer = require('autoprefixer');
 
 const PATHS = {
-  style: [
-    path.join(__dirname, 'style', 'main.css')
-  ],
   parentModules: path.join(__dirname, '..', 'node_modules'),
   packages: path.join(__dirname, '..', 'packages')
 };
@@ -17,7 +15,7 @@ module.exports = (env) => {
     case 'build':
       return merge(
         commonConfig(),
-        buildConfig(PATHS.style)
+        buildConfig()
       );
     case 'interactive':
       return merge(
@@ -28,27 +26,44 @@ module.exports = (env) => {
     default:
       return merge(
         commonConfig(),
-        developmentConfig(PATHS.style)
+        developmentConfig()
       );
   }
 };
 
 function commonConfig() {
   return {
-    entry: {
-      style: PATHS.style
-    },
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.(js|jsx)$/,
           use: 'babel-loader',
           include: [
             path.join(__dirname, 'components'),
             path.join(__dirname, 'layouts'),
             path.join(__dirname, 'pages')
           ]
-        }
+        },
+        {
+          test: /\.woff$/,
+          use: 'url-loader?prefix=font/&limit=5000&mimetype=application/font-woff'
+        },
+        {
+          test: /\.ttf$|\.eot$/,
+          use: 'file-loader?prefix=font/'
+        },
+        {
+          test: /\.jpg$/,
+          use: 'file-loader'
+        },
+        {
+          test: /\.png$/,
+          use: 'file-loader'
+        },
+        {
+          test: /\.svg$/,
+          use: 'raw-loader'
+        },
       ]
     },
     resolve: {
@@ -86,7 +101,7 @@ function interactiveConfig() {
   };
 }
 
-function developmentConfig(stylePaths) {
+function developmentConfig() {
   return {
     module: {
       rules: [
@@ -95,15 +110,30 @@ function developmentConfig(stylePaths) {
           use: [
             'style-loader',
             'css-loader'
-          ],
-          include: stylePaths
+          ]
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => ([
+                  autoprefixer({ browsers: ['last 2 versions'] })
+                ])
+              }
+            },
+            'sass-loader'
+          ]
         }
       ]
     }
   };
 }
 
-function buildConfig(stylePaths) {
+function buildConfig() {
   return {
     module: {
       rules: [
@@ -112,8 +142,25 @@ function buildConfig(stylePaths) {
           use: ExtractTextPlugin.extract({
             use: 'css-loader',
             fallback: 'style-loader'
-          }),
-          include: stylePaths
+          })
+        },
+        {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [
+              'css-loader',
+              {
+                loader: 'postcss-loader',
+                options: {
+                  plugins: () => ([
+                    autoprefixer({ browsers: ['last 2 versions'] })
+                  ])
+                }
+              },
+              'sass-loader'
+            ]
+          })
         }
       ]
     },
