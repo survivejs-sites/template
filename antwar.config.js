@@ -13,6 +13,7 @@ module.exports = () => ({
           /^\.\/.*\.md$/
         )
       ),
+      custom: () => require('./layouts/SiteIndex').default,
       layouts: {
         index: () => require('./layouts/Index').default,
         page: () => require('./layouts/Page').default

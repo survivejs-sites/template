@@ -6,7 +6,13 @@ module.exports = function () {
   const renderer = new marked.Renderer();
 
   renderer.image = function (href, title, text) {
-    return `<img src="__IMG_START__${href}__IMG_END__" alt="${text}" class="inline-img" />`;
+    const textParts = text ? text.split('|') : [];
+    const alt = textParts[0] || '';
+    const width = textParts[1] || '';
+    const height = textParts[2] || '';
+    const className = textParts[3] || '';
+
+    return `<img src="__IMG_START__${href}__IMG_END__" alt="${alt}" class="${className}" width="${width}" height="${height}" />`;
   };
 
   // patch ids (this.options.headerPrefix can be undefined!)
