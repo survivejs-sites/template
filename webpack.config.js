@@ -73,7 +73,12 @@ function commonConfig() {
           to: './assets/'
         }
       ])
-    ]
+    ],
+    resolve: {
+      alias: {
+        assets: path.join(__dirname, 'assets')
+      }
+    }
   };
 }
 

@@ -1,7 +1,7 @@
 ## SurviveJS - Webpack
 
 <p>
-  ![Webpack book cover|255|329|front-cover](../assets/img/webpack_title_page_small.png)
+  ![Webpack book cover|255|329|front-cover](assets/img/webpack_title_page_small.png)
 
   **SurviveJS - Webpack** is meant for beginner to intermediate users of [webpack](https://webpack.github.io/). Webpack is a powerful bundler that can simplify the creation of complex web application.
 </p>
@@ -31,7 +31,7 @@ A third of the income goes to Tobias. This is my way of saying thanks and suppor
 ## SurviveJS - React
 
 <p>
-  ![React logo|200|200|react-image](../assets/img/react.png)
+  ![React logo|200|200|react-image](assets/img/react.png)
 
   Facebook's [React](https://facebook.github.io/react/) powers an increasing amount of sites. There is a good reason for this. It simplifies frontend development greatly.
 </p>
@@ -39,7 +39,7 @@ A third of the income goes to Tobias. This is my way of saying thanks and suppor
 Combined with [webpack](https://webpack.github.io/), a bundling tool, you have a powerful frontend development environment in your hands. The SurviveJS effort consists of two books that help you to adopt these technologies. They are available as [a bundle](https://leanpub.com/b/survivejs-webpack-react).
 
 <p>
-  ![React book cover|255|329|front-cover](../assets/img/react_title_page_small.png)
+  ![React book cover|255|329|front-cover](assets/img/react_title_page_small.png)
 
   **SurviveJS - React** shows you how to build a simple [Kanban](https://en.wikipedia.org/wiki/Kanban_%28development%29). The idea is that if you can build a simple application, you can probably build something more complex after that. The first application is always the hardest.
 </p>
@@ -50,7 +50,7 @@ While implementing the Kanban step by step, you will pick up basic ideas of how 
 
 Once you have completed the project, you will end up with something like this:
 
-![Kanban animation|594|279|kanban-animation](../assets/img/kanban.gif)
+![Kanban animation|594|279|kanban-animation](assets/img/kanban.gif)
 
 Even though the application looks simple, it's complex enough to illustrate potential problems such as reference handling.
 
