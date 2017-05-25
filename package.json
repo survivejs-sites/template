@@ -4,7 +4,9 @@
   "description": "Template site to clone",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./antwar.bootstrap.js develop",
+    "build": "node ./antwar.bootstrap.js build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,38 @@
   "bugs": {
     "url": "https://github.com/survivejs-sites/template/issues"
   },
-  "homepage": "https://github.com/survivejs-sites/template#readme"
+  "homepage": "https://github.com/survivejs-sites/template#readme",
+  "devDependencies": {
+    "antwar": "^0.13.0",
+    "autoprefixer": "^7.1.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.5",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-hmre": "^1.1.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "front-matter": "^2.1.2",
+    "gh-pages": "^1.0.0",
+    "loader-utils": "^1.1.0",
+    "lodash": "^4.17.4",
+    "marked": "^0.3.6",
+    "node-sass": "^4.5.3",
+    "postcss-loader": "^2.0.5",
+    "preact": "^8.1.0",
+    "preact-compat": "^3.16.0",
+    "prism-languages": "^0.3.3",
+    "prismjs": "^1.6.0",
+    "remove-markdown": "^0.1.0",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.18.1",
+    "webpack": "^2.6.0",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-merge": "^4.1.0"
+  }
 }
