@@ -1,2 +1,3 @@
-# template
-Template site to clone
+# site-template
+
+Template site to clone.
