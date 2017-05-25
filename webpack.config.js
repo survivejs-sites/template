@@ -6,11 +6,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const merge = require('webpack-merge');
 const autoprefixer = require('autoprefixer');
 
-const PATHS = {
-  parentModules: path.join(__dirname, '..', 'node_modules'),
-  packages: path.join(__dirname, '..', 'packages')
-};
-
 module.exports = (env) => {
   switch (env) {
     case 'build':
@@ -78,21 +73,7 @@ function commonConfig() {
           to: './assets/'
         }
       ])
-    ],
-    resolve: {
-      // Patch webpack module resolution so that the site works with `packages`
-      modules: [
-        PATHS.packages,
-        // Include parent so that interactive lookup works against preact etc.
-        PATHS.parentModules
-      ]
-    },
-    resolveLoader: {
-      modules: [
-        // Include parent so that interactive lookup works against preact etc.
-        PATHS.parentModules
-      ]
-    }
+    ]
   };
 }
 
