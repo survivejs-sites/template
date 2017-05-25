@@ -1,6 +1,9 @@
+const path = require('path');
+
 module.exports = () => ({
   template: {
-    title: 'Template'
+    title: 'Template',
+    file: path.resolve(__dirname, 'templates/page.ejs')
   },
   output: 'build',
   layout: () => require('./layouts/SiteBody').default,
