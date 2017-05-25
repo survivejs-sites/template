@@ -12,7 +12,7 @@ const PATHS = {
   packages: path.join(__dirname, '..', 'packages')
 };
 
-module.exports = function (env) {
+module.exports = (env) => {
   switch (env) {
     case 'build':
       return merge(
@@ -44,6 +44,7 @@ function commonConfig() {
           test: /\.jsx?$/,
           use: 'babel-loader',
           include: [
+            path.join(__dirname, 'components'),
             path.join(__dirname, 'layouts'),
             path.join(__dirname, 'pages')
           ]

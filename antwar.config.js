@@ -3,6 +3,7 @@ module.exports = () => ({
     title: 'Template'
   },
   output: 'build',
+  layout: () => require('./layouts/SiteBody').default,
   paths: {
     '/': {
       content: () => (
