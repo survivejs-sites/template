@@ -53,6 +53,10 @@ function commonConfig() {
           use: 'file-loader?prefix=font/'
         },
         {
+          test: /\.gif$/,
+          use: 'file-loader'
+        },
+        {
           test: /\.jpg$/,
           use: 'file-loader'
         },
