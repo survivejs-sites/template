@@ -8,7 +8,7 @@
     "build": "node ./antwar.bootstrap.js build",
     "build:netlify": "npm run fetch-books && npm run build",
     "deploy": "gh-pages -d build",
-    "fetch-books": "scripts/fetch-books.sh",
+    "fetch-books": "scripts/fetch-books.sh"
   },
   "repository": {
     "type": "git",
