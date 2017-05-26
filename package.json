@@ -54,6 +54,7 @@
     "remove-markdown": "^0.1.0",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.1",
+    "title-case": "^2.1.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5",

@@ -24,6 +24,9 @@ module.exports = () => ({
       },
       paths: {
         blog: {
+          layouts: {
+            page: () => require('./layouts/BlogPage').default
+          },
           sort: pages => _.sortBy(pages, 'date').reverse(),
           url: ({ sectionName, fileName }) => (
             `/${sectionName}/${_.trimStart(fileName, '0123456789-')}/`
