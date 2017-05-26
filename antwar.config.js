@@ -28,7 +28,7 @@ module.exports = () => ({
           url: ({ sectionName, fileName }) => (
             `/${sectionName}/${_.trimStart(fileName, '0123456789-')}/`
           ),
-          custom: () => require('./layouts/SiteIndex').default
+          custom: () => require('./layouts/BlogIndex').default
         }
       }
     }
