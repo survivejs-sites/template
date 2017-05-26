@@ -14,9 +14,11 @@ module.exports = function (source) {
   result.keywords = generateKeywords(result);
   result.body = markdown().process(result.body, highlight);
 
-  // TODO: headerImage processing
-
   delete result.frontmatter;
+
+  if (result.attributes.headerImage) {
+    result.attributes.headerImage = `__IMG_START__${result.attributes.headerImage}__IMG_END__`;
+  }
 
   const context = this;
 
