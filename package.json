@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/survivejs-sites/template#readme",
   "devDependencies": {
-    "antwar": "^0.13.0",
+    "antwar": "^0.13.1",
     "autoprefixer": "^7.1.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
@@ -32,7 +32,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.28.2",
+    "css-loader": "^0.28.3",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "front-matter": "^2.1.2",
@@ -54,7 +54,7 @@
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.1",
     "url-loader": "^0.5.8",
-    "webpack": "^2.6.0",
+    "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5",
     "webpack-merge": "^4.1.0"
   }

@@ -14,6 +14,8 @@ module.exports = function (source) {
   result.keywords = generateKeywords(result);
   result.body = markdown().process(result.body, highlight);
 
+  // TODO: headerImage processing
+
   delete result.frontmatter;
 
   const context = this;

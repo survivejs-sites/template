@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const path = require('path');
 
 module.exports = () => ({
@@ -21,7 +22,15 @@ module.exports = () => ({
         index: () => require('./layouts/Index').default,
         page: () => require('./layouts/Page').default
       },
-      redirects: {}
+      paths: {
+        blog: {
+          sort: pages => _.sortBy(pages, 'date').reverse(),
+          url: ({ sectionName, fileName }) => (
+            `/${sectionName}/${_.trimStart(fileName, '0123456789-')}/`
+          ),
+          custom: () => require('./layouts/SiteIndex').default
+        }
+      }
     }
   }
 });
