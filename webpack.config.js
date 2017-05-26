@@ -76,7 +76,13 @@ function commonConfig() {
     ],
     resolve: {
       alias: {
-        assets: path.join(__dirname, 'assets')
+        assets: path.resolve(__dirname, 'assets'),
+        images: path.resolve(__dirname, 'books/webpack-book/manuscript/images')
+      }
+    },
+    resolveLoader: {
+      alias: {
+        'page-loader': path.resolve(__dirname, 'loaders/page-loader.js')
       }
     }
   };

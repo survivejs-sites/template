@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/survivejs-sites/template#readme",
   "devDependencies": {
-    "antwar": "^0.13.1",
+    "antwar": "^0.13.4",
     "autoprefixer": "^7.1.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
@@ -48,6 +48,7 @@
     "preact-compat": "^3.16.0",
     "prism-languages": "^0.3.3",
     "prismjs": "^1.6.0",
+    "raw-loader": "^0.5.1",
     "react": "^15.5.4",
     "react-github-corner": "^0.3.0",
     "react-router": "^4.1.1",

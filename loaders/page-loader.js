@@ -23,7 +23,7 @@ module.exports = function (source) {
   const context = this;
 
   return `module.exports = ${JSON.stringify(result)};`.replace(
-    /__IMG_START__([^,\]]+)__IMG_END__/g, (match, src) => {
+    /__IMG_START__([^,\]>]+)__IMG_END__/g, (match, src) => {
       if (_.startsWith(src, 'http')) {
         return src;
       }
@@ -52,7 +52,7 @@ function generateDescription(file) {
 }
 
 function generateKeywords(file) {
-  let keywords;
+  let keywords = [];
 
   if (file.attributes && file.attributes.keywords) {
     keywords = file.attributes.keywords;
