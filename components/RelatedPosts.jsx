@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import React from 'react';
 import titleCase from 'title-case';
+import Toc from './Toc';
 
 const RelatedPosts = ({
-  title, posts, headers
+  title, posts, headers,
 }) => (
   <div>
     {_.map(posts, (pages, name) => {

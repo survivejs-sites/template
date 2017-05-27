@@ -4,7 +4,7 @@ import moment from 'moment';
 const Moment = ({
   className,
   datetime,
-  format = 'D MMM YYYY'
+  format = 'D MMM YYYY',
 }) => (
   <time dateTime={datetime} className={className}>
     {moment(datetime).format(format)}

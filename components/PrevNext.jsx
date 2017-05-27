@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const PrevNext = ({
   next, nextText,
   previous, previousText,
-  getTitle = () => {}
+  getTitle = () => {},
 }) => {
   if (!(next || previous)) {
     return <div className="prevnext" />;
@@ -12,7 +12,7 @@ const PrevNext = ({
 
   // XXX: make sure page spans whole container if it's the only one
   let style = {
-    width: '100%'
+    width: '100%',
   };
   if (next && previous) {
     style = {};
@@ -25,7 +25,7 @@ const PrevNext = ({
           {previous.headerImage && <div
             className="prevnext__bg"
             style={{
-              backgroundImage: `url(${previous.headerImage})`
+              backgroundImage: `url(${previous.headerImage})`,
             }}
           />}
           <span className="prevnext__info">{previousText}</span>
@@ -38,7 +38,7 @@ const PrevNext = ({
           {next.headerImage && <div
             className="prevnext__bg"
             style={{
-              backgroundImage: `url(${next.headerImage})`
+              backgroundImage: `url(${next.headerImage})`,
             }}
           />}
           <span className="prevnext__info">{nextText}</span>

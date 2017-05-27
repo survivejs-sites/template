@@ -3,7 +3,7 @@ import GithubCorner from 'react-github-corner';
 
 const Feedback = ({ sectionName }) => {
   if (sectionName !== 'react' || sectionName !== 'webpack') {
-    sectionName = 'site';
+    sectionName = 'site'; // eslint-disable-line no-param-reassign
   }
 
   return (

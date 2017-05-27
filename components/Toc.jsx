@@ -7,7 +7,7 @@ const Toc = ({ sectionPages, title }) => (
       const type = navPage.type || '';
 
       return (
-        <li key={`navPage${i}`} className={type && 'toc-' + type}>
+        <li key={`navPage${i}`} className={type && `toc-l${type}`}>
           {navPage.title === title ?
             <span className={`toc-nav__link toc-nav__link--current ${type}`}>
               {navPage.title}

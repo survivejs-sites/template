@@ -10,7 +10,7 @@ import '../styles/prism.css';
 import '../styles/fontello-codes.css';
 import '../styles/fontello-embedded.css';
 
-const navigationPages = (sectionName) => ([
+const navigationPages = sectionName => ([
   {
     title: 'Home',
     url: '/',
@@ -42,7 +42,7 @@ const navigationPages = (sectionName) => ([
 const SiteBody = ({
   children,
   section,
-  location: { pathname }
+  location: { pathname },
 }) => (
   <div>
     {children}

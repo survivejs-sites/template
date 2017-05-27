@@ -14,36 +14,38 @@ const BlogPage = ({
   page: {
     file: {
       attributes: {
-        author, date, headerExtra, headerImage, title
+        author, date, headerExtra, headerImage, title,
       },
-      body
+      body,
     },
     keywords,
     previous,
-    next
+    next,
   },
   section,
-  config
+  config,
 }) => {
   let postAuthor = author || (config.blog && config.blog.author);
   const relatedPosts = getRelatedPosts(keywords, section.pages(), 10);
   const relatedHeaders = {
     interview: 'Interviews',
     opinion: 'Opinions',
-    publishing: 'Publishing thoughts'
+    publishing: 'Publishing thoughts',
   };
 
-  if(_.isFunction(postAuthor)) {
+  if (_.isFunction(postAuthor)) {
     postAuthor = postAuthor();
   }
 
   return (
     <div className="post__wrapper">
-      {headerImage ?
-        <div className="header-image" style={{
-          backgroundImage: `url(${headerImage})`
-        }} /> :
-        null
+      {headerImage &&
+        <div
+          className="header-image"
+          style={{
+            backgroundImage: `url(${headerImage})`,
+          }}
+        />
       }
 
       <h1 className="post__heading">{title}</h1>
@@ -54,10 +56,12 @@ const BlogPage = ({
 
       <div className="post">
         <div className="post__content">
-          <div dangerouslySetInnerHTML={{__html: body}} />
+          <div dangerouslySetInnerHTML={{ __html: body }} />
           {headerExtra &&
-            <div className="header-extra"
-              dangerouslySetInnerHTML={{__html: headerExtra}} />
+            <div
+              className="header-extra"
+              dangerouslySetInnerHTML={{ __html: headerExtra }}
+            />
           }
           {date && <Moment className="post__moment" datetime={date} /> }
           {postAuthor && <Author author={postAuthor} />}

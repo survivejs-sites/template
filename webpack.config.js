@@ -59,6 +59,10 @@ function commonConfig() {
           test: /\.txt$/,
           use: 'raw-loader',
         },
+        {
+          test: /\.md$/,
+          use: 'page-loader',
+        },
       ],
     },
     plugins: [

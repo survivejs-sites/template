@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const PrevNextMini = ({
   previous,
   next,
-  getTitle = () => {}
+  getTitle = () => {},
 }) => (
   <div>
     {renderNext(getTitle, next)}
