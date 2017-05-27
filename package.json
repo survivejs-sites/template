@@ -9,7 +9,9 @@
     "build:netlify": "npm run fetch-books && npm run build",
     "deploy": "gh-pages -d build",
     "fetch-books": "scripts/fetch-books.sh",
-    "lint": "eslint . --ignore-path .gitignore --cache"
+    "lint": "eslint . --ignore-path .gitignore --cache",
+    "test": "npm run lint",
+    "prepush": "npm test"
   },
   "repository": {
     "type": "git",
@@ -53,6 +55,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "gh-pages": "^1.0.0",
+    "husky": "^0.13.3",
     "moment": "^2.18.1",
     "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.5",
