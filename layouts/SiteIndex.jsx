@@ -26,7 +26,7 @@ const SiteIndex = () => (
           <div className='front-button-wrapper'>
             <div className='read-free-note'>There are also free versions available!</div>
             <span className='read-free'>
-              <a href='/react/introduction'>Read the free version of the React book</a> or <a href='/webpack/preface'>read the free version of the webpack book</a>
+              <a href='/react/introduction/'>Read the free version of the React book</a> or <a href='/webpack/preface/'>read the free version of the webpack book</a>
             </span>
           </div>
         </div>
