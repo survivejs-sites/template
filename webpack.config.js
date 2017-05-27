@@ -9,21 +9,12 @@ const autoprefixer = require('autoprefixer');
 module.exports = (env) => {
   switch (env) {
     case 'build':
-      return merge(
-        commonConfig(),
-        buildConfig()
-      );
+      return merge(commonConfig(), buildConfig());
     case 'interactive':
-      return merge(
-        commonConfig(),
-        interactiveConfig()
-      );
+      return merge(commonConfig(), interactiveConfig());
     case 'start':
     default:
-      return merge(
-        commonConfig(),
-        developmentConfig()
-      );
+      return merge(commonConfig(), developmentConfig());
   }
 };
 
@@ -37,54 +28,58 @@ function commonConfig() {
           include: [
             path.join(__dirname, 'components'),
             path.join(__dirname, 'layouts'),
-            path.join(__dirname, 'pages')
-          ]
+            path.join(__dirname, 'pages'),
+          ],
         },
         {
           test: /\.woff$/,
-          use: 'url-loader?prefix=font/&limit=5000&mimetype=application/font-woff'
+          use: 'url-loader?prefix=font/&limit=5000&mimetype=application/font-woff',
         },
         {
           test: /\.ttf$|\.eot$/,
-          use: 'file-loader?prefix=font/'
+          use: 'file-loader?prefix=font/',
         },
         {
           test: /\.gif$/,
-          use: 'file-loader'
+          use: 'file-loader',
         },
         {
           test: /\.jpg$/,
-          use: 'file-loader'
+          use: 'file-loader',
         },
         {
           test: /\.png$/,
-          use: 'file-loader'
+          use: 'file-loader',
         },
         {
           test: /\.svg$/,
-          use: 'raw-loader'
+          use: 'raw-loader',
         },
-      ]
+        {
+          test: /\.txt$/,
+          use: 'raw-loader',
+        },
+      ],
     },
     plugins: [
       new CopyWebpackPlugin([
         {
           from: './assets/extra/',
-          to: './assets/'
-        }
-      ])
+          to: './assets/',
+        },
+      ]),
     ],
     resolve: {
       alias: {
         assets: path.resolve(__dirname, 'assets'),
-        images: path.resolve(__dirname, 'books/webpack-book/manuscript/images')
-      }
+        images: path.resolve(__dirname, 'books/webpack-book/manuscript/images'),
+      },
     },
     resolveLoader: {
       alias: {
-        'page-loader': path.resolve(__dirname, 'loaders/page-loader.js')
-      }
-    }
+        'page-loader': path.resolve(__dirname, 'loaders/page-loader.js'),
+      },
+    },
   };
 }
 
@@ -93,16 +88,16 @@ function interactiveConfig() {
     resolve: {
       alias: {
         react: 'preact-compat/dist/preact-compat.min.js',
-        'react-dom': 'preact-compat/dist/preact-compat.min.js'
-      }
+        'react-dom': 'preact-compat/dist/preact-compat.min.js',
+      },
     },
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
         compress: {
-          warnings: false
-        }
-      })
-    ]
+          warnings: false,
+        },
+      }),
+    ],
   };
 }
 
@@ -114,8 +109,8 @@ function developmentConfig() {
           test: /\.css$/,
           use: [
             'style-loader',
-            'css-loader'
-          ]
+            'css-loader',
+          ],
         },
         {
           test: /\.scss$/,
@@ -126,15 +121,15 @@ function developmentConfig() {
               loader: 'postcss-loader',
               options: {
                 plugins: () => ([
-                  autoprefixer({ browsers: ['last 2 versions'] })
-                ])
-              }
+                  autoprefixer({ browsers: ['last 2 versions'] }),
+                ]),
+              },
             },
-            'sass-loader'
-          ]
-        }
-      ]
-    }
+            'sass-loader',
+          ],
+        },
+      ],
+    },
   };
 }
 
@@ -146,8 +141,8 @@ function buildConfig() {
           test: /\.css$/,
           use: ExtractTextPlugin.extract({
             use: 'css-loader',
-            fallback: 'style-loader'
-          })
+            fallback: 'style-loader',
+          }),
         },
         {
           test: /\.scss$/,
@@ -159,22 +154,22 @@ function buildConfig() {
                 loader: 'postcss-loader',
                 options: {
                   plugins: () => ([
-                    autoprefixer({ browsers: ['last 2 versions'] })
-                  ])
-                }
+                    autoprefixer({ browsers: ['last 2 versions'] }),
+                  ]),
+                },
               },
-              'sass-loader'
-            ]
-          })
-        }
-      ]
+              'sass-loader',
+            ],
+          }),
+        },
+      ],
     },
     plugins: [
       new ExtractTextPlugin({
         filename: '[name].[chunkhash].css',
-        allChunks: true
+        allChunks: true,
       }),
-      new CleanWebpackPlugin(['build'])
-    ]
+      new CleanWebpackPlugin(['build']),
+    ],
   };
 }

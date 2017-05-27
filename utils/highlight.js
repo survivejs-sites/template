@@ -2,7 +2,7 @@
 const Prism = require('prismjs');
 const languages = require('prism-languages');
 
-const highlight = Prism.highlight;
+const prismHighlight = Prism.highlight;
 
 if (typeof document !== 'undefined') {
   // disable automatic highlight on content loaded
@@ -11,9 +11,9 @@ if (typeof document !== 'undefined') {
   script.setAttribute('data-manual', '');
 }
 
-module.exports = function (code, language = 'bash') {
+module.exports = function highlight(code, language = 'bash') {
   try {
-    return highlight(code, languages[language]);
+    return prismHighlight(code, languages[language]);
   } catch (error) {
     if (!languages[language]) {
       console.warn('Prism does not support this language: ', language);

@@ -5,7 +5,7 @@ const removeMarkdown = require('remove-markdown');
 const markdown = require('../utils/markdown');
 const highlight = require('../utils/highlight');
 
-module.exports = function (source) {
+module.exports = function pageLoader(source) {
   const result = frontmatter(source);
 
   result.attributes = result.attributes || {};
@@ -40,7 +40,7 @@ function generatePreview(file, body) {
     ret = file.attributes.preview;
   }
 
-  return removeMarkdown(ret).slice(0, 100) + '…';
+  return `${removeMarkdown(ret).slice(0, 100)}…`;
 }
 
 function generateDescription(file) {

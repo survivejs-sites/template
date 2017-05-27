@@ -1,7 +1,7 @@
 const marked = require('marked');
 
 function parseQuotes(data) {
-  const tokens = marked.lexer(data).map(function (t) {
+  const tokens = marked.lexer(data).map((t) => {
     if (t.type === 'paragraph') {
       return parseCustomQuote(t, 'T>', 'tip') ||
         parseCustomQuote(t, 'W>', 'warning') ||
@@ -38,10 +38,10 @@ function parseCustomQuote(token, match, className) {
 
       return {
         type: 'html',
-        text: `<blockquote class="${className}">` +
-          `<div class="tip-title"><i class="tip-icon ${icon}"></i>${className}</div>` +
-          text.slice(2).trim() +
-          '</blockquote>'
+        text: `${`<blockquote class="${className}">` +
+          `<div class="tip-title"><i class="tip-icon ${icon}"></i>${className}</div>`}${
+          text.slice(2).trim()
+          }</blockquote>`,
       };
     }
   }

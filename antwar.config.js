@@ -4,18 +4,14 @@ const path = require('path');
 module.exports = () => ({
   template: {
     title: 'Template',
-    file: path.resolve(__dirname, 'templates/page.ejs')
+    file: path.resolve(__dirname, 'templates/page.ejs'),
   },
   output: 'build',
   layout: () => require('./layouts/SiteBody').default,
   paths: {
     '/': {
       content: () => (
-        require.context(
-          'page-loader!./pages',
-          true,
-          /^\.\/.*\.md$/
-        )
+        require.context('page-loader!./pages', true, /^\.\/.*\.md$/)
       ),
       index: () => require('./layouts/SiteIndex').default,
       paths: {
@@ -25,43 +21,39 @@ module.exports = () => ({
           sort: pages => _.sortBy(pages, 'date').reverse(),
           url: ({ sectionName, fileName }) => (
             `/${sectionName}/${_.trimStart(fileName, '0123456789-')}/`
-          )
-        }
-      }
+          ),
+        },
+      },
     },
-    'webpack': {
+    webpack: {
       content: () => (
-        require.context(
-          'page-loader!./books/webpack-book/manuscript',
-          true,
-          /^\.\/.*\.md$/
-        )
+        require.context('page-loader!./books/webpack-book/manuscript', true, /^\.\/.*\.md$/)
       ),
       index: () => require('./layouts/WebpackIndex.jsx').default,
       layout: () => require('./layouts/ChapterPage.jsx').default,
-      sort: pages => {
-        let order = require('raw-loader!./books/webpack-book/manuscript/Book.txt').split('\n').filter(id);
+      sort: (pages) => {
+        let order = require('./books/webpack-book/manuscript/Book.txt').split('\n').filter(id);
 
         const ret = [];
 
-        order = order.filter(function(name) {
-          return path.extname(name) === '.md';
-        });
+        order = order.filter(name => path.extname(name) === '.md');
 
-        order.forEach(function(fileName, i) {
+        order.forEach((fileName) => {
           const parts = fileName.split('/');
           const chapterName = _.last(parts).split('.')[0];
-          const partName = parts.length > 1 ? '/' + _.head(parts) : '';
+          const partName = parts.length > 1 ? `/${_.head(parts)}` : '';
           const result = _.find(pages, {
             fileName: chapterName,
-            sectionName: 'webpack' + partName
+            sectionName: `webpack${partName}`,
           });
 
-          if(!result) {
+          if (!result) {
             return console.error('Failed to find', chapterName, partName);
           }
 
           ret.push(result);
+
+          return null;
         });
 
         ret.reverse();
@@ -72,9 +64,9 @@ module.exports = () => ({
         const fixedFileName = _.lowerCase(_.trimStart(fileName, '0123456789-_')).replace(/ /g, '-');
 
         return `/webpack${sectionName}/${fixedFileName}/`;
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
-function id(a) {return a;}
+function id(a) { return a; }

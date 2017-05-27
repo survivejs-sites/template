@@ -2,10 +2,10 @@
 const marked = require('marked');
 const parse = require('./parse');
 
-module.exports = function () {
+module.exports = function markdown() {
   const renderer = new marked.Renderer();
 
-  renderer.image = function (href, title, text) {
+  renderer.image = function image(href, title, text) {
     const textParts = text ? text.split('|') : [];
     const alt = textParts[0] || '';
     const width = textParts[1] || '';
@@ -16,7 +16,7 @@ module.exports = function () {
   };
 
   // patch ids (this.options.headerPrefix can be undefined!)
-  renderer.heading = function (text, level, raw) {
+  renderer.heading = function heading(text, level, raw) {
     const id = raw.toLowerCase().replace(/`/g, '').replace(/[^\w]+/g, '-');
 
     return `<h${level} class="header">` +
@@ -43,7 +43,7 @@ module.exports = function () {
         smartypants: false,
         headerPrefix: '',
         renderer,
-        xhtml: false
+        xhtml: false,
       };
 
       return marked.parser(parse.quotes(content), markedDefaults);
@@ -55,8 +55,8 @@ module.exports = function () {
         .filter(chunk => chunk.type === 'heading')
         .map(chunk => ({
           title: chunk.text.replace(/`/g, ''),
-          id: chunk.text.toLowerCase().replace(/`/g, '').replace(/[^\w]+/g, '-')
+          id: chunk.text.toLowerCase().replace(/`/g, '').replace(/[^\w]+/g, '-'),
         }));
-    }
+    },
   };
 };
