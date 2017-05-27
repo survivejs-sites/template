@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/survivejs-sites/template#readme",
   "devDependencies": {
-    "antwar": "^0.13.4",
+    "antwar": "^0.14.0",
     "autoprefixer": "^7.1.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",

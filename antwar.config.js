@@ -17,21 +17,15 @@ module.exports = () => ({
           /^\.\/.*\.md$/
         )
       ),
-      custom: () => require('./layouts/SiteIndex').default,
-      layouts: {
-        index: () => require('./layouts/Index').default,
-        page: () => require('./layouts/Page').default
-      },
+      index: () => require('./layouts/SiteIndex').default,
       paths: {
         blog: {
-          layouts: {
-            page: () => require('./layouts/BlogPage').default
-          },
+          index: () => require('./layouts/BlogIndex').default,
+          layout: () => require('./layouts/BlogPage').default,
           sort: pages => _.sortBy(pages, 'date').reverse(),
           url: ({ sectionName, fileName }) => (
             `/${sectionName}/${_.trimStart(fileName, '0123456789-')}/`
-          ),
-          custom: () => require('./layouts/BlogIndex').default
+          )
         }
       }
     },
@@ -43,6 +37,8 @@ module.exports = () => ({
           /^\.\/.*\.md$/
         )
       ),
+      index: () => require('./layouts/WebpackIndex.jsx').default,
+      layout: () => require('./layouts/ChapterPage.jsx').default,
       sort: pages => {
         let order = require('raw-loader!./books/webpack-book/manuscript/Book.txt').split('\n').filter(id);
 
@@ -75,11 +71,7 @@ module.exports = () => ({
       url: ({ sectionName, fileName }) => {
         const fixedFileName = _.lowerCase(_.trimStart(fileName, '0123456789-_')).replace(/ /g, '-');
 
-        return `/webpack${sectionName}/${fixedFileName}/`
-      },
-      custom: () => require('./layouts/WebpackIndex.jsx').default,
-      layouts: {
-        page: () => require('./layouts/ChapterPage.jsx').default
+        return `/webpack${sectionName}/${fixedFileName}/`;
       }
     }
   }
