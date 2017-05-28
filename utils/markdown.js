@@ -26,6 +26,15 @@ module.exports = function markdown() {
       `</h${level}>\n`;
   };
 
+  renderer.paragraph = function paragraph(text) {
+    // Skip pagebreaks
+    if (text === '{pagebreak}') {
+      return '';
+    }
+
+    return '<p>' + text + '</p>\n';
+  };
+
   return {
     process(content, highlight) {
       const markedDefaults = {
