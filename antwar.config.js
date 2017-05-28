@@ -33,7 +33,7 @@ module.exports = () => ({
       index: () => require('./layouts/BookIndex.jsx').default,
       layout: () => require('./layouts/ChapterPage.jsx').default,
       transform: (pages) => {
-        let order = require('./books/webpack-book/manuscript/Book.txt').split('\n').filter(id);
+        let order = require('./books/webpack-book/manuscript/Book.txt').split('\n').filter(_.identity);
 
         const ret = [];
 
@@ -67,5 +67,3 @@ module.exports = () => ({
     },
   },
 });
-
-function id(a) { return a; }
