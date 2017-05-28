@@ -60,7 +60,8 @@ module.exports = () => ({
         return generateAdjacent(ret);
       },
       url: ({ sectionName, fileName }) => {
-        const fixedFileName = _.trimStart(fileName, '0123456789-_').toLowerCase().replace(/ /g, '-');
+        const fixedFileName = _.trimStart(fileName, '0123456789-_').toLowerCase()
+          .replace(/ /g, '-').replace(/_/g, '-');
 
         return `/${sectionName}/${fixedFileName}/`;
       },
