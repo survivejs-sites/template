@@ -29,7 +29,7 @@ module.exports = () => ({
       content: () => (
         require.context('./books/webpack-book/manuscript', true, /^\.\/.*\.md$/)
       ),
-      index: () => require('./layouts/WebpackIndex.jsx').default,
+      index: () => require('./layouts/BookIndex.jsx').default,
       layout: () => require('./layouts/ChapterPage.jsx').default,
       transform: (pages) => {
         let order = require('./books/webpack-book/manuscript/Book.txt').split('\n').filter(id);
@@ -56,14 +56,12 @@ module.exports = () => ({
           return null;
         });
 
-        ret.reverse();
-
         return ret;
       },
       url: ({ sectionName, fileName }) => {
         const fixedFileName = _.lowerCase(_.trimStart(fileName, '0123456789-_')).replace(/ /g, '-');
 
-        return `/webpack${sectionName}/${fixedFileName}/`;
+        return `/${sectionName}/${fixedFileName}/`;
       },
     },
   },

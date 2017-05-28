@@ -3,9 +3,9 @@ import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import Moment from '../components/Moment';
 
-const BlogIndex = ({ section }) => (
+const BookIndex = ({ section }) => (
   <div className="grid">
-    <h1>Blog Posts</h1>
+    <h1>Table of Contents</h1>
 
     <ul className="post-list">{_.map(section.pages(), (page, i) => (
       <li key={`post-list-item-${i}`}>
@@ -25,4 +25,4 @@ const BlogIndex = ({ section }) => (
   </div>
 );
 
-export default BlogIndex;
+export default BookIndex;

@@ -87,9 +87,9 @@ ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
 
-antwar@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/antwar/-/antwar-0.15.0.tgz#6eb9948f0bb250a9518c5021c680e3d391f82276"
+antwar@^0.15.3:
+  version "0.15.3"
+  resolved "https://registry.yarnpkg.com/antwar/-/antwar-0.15.3.tgz#c2f252ce9556497ad68c95e4985e19b98bdbdd2f"
   dependencies:
     async "^2.4.0"
     chalk "^1.1.3"
