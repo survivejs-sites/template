@@ -10,7 +10,7 @@ import RelatedPosts from '../components/RelatedPosts';
 import SocialLinks from '../components/SocialLinks';
 import getRelatedPosts from '../utils/get-related-posts';
 
-const BlogPage = ({
+const BookPage = ({
   page: {
     file: {
       attributes: {
@@ -91,4 +91,4 @@ const BlogPage = ({
   );
 };
 
-export default BlogPage;
+export default BookPage;
