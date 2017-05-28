@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const path = require('path');
+const generateAdjacent = require('./utils/generate-adjacent');
 
 module.exports = () => ({
   template: {
@@ -56,7 +57,7 @@ module.exports = () => ({
           return null;
         });
 
-        return ret;
+        return generateAdjacent(ret);
       },
       url: ({ sectionName, fileName }) => {
         const fixedFileName = _.lowerCase(_.trimStart(fileName, '0123456789-_')).replace(/ /g, '-');
