@@ -45,7 +45,7 @@ module.exports = () => ({
           const partName = parts.length > 1 ? `/${_.head(parts)}` : '';
           const result = _.find(pages, {
             fileName: chapterName,
-            sectionName: `webpack${partName}`,
+            sectionName: 'webpack',
           });
 
           if (!result) {
