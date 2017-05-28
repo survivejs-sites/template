@@ -8,11 +8,18 @@ const highlight = require('../utils/highlight');
 module.exports = function pageLoader(source) {
   const result = frontmatter(source);
 
+  const { title, body } = parseTitle(result.body);
+
   result.attributes = result.attributes || {};
-  result.preview = generatePreview(result, result.body);
+
+  if (!result.attributes.title) {
+    result.attributes.title = title;
+  }
+
+  result.preview = generatePreview(result, body);
   result.description = generateDescription(result);
   result.keywords = generateKeywords(result);
-  result.body = markdown().process(result.body, highlight);
+  result.body = markdown().process(body, highlight);
 
   delete result.frontmatter;
 
@@ -32,6 +39,26 @@ module.exports = function pageLoader(source) {
     }
   );
 };
+
+function parseTitle(body) {
+  const lines = body.split('\n');
+
+  if (lines[0].indexOf('#') === 0) {
+    return {
+      title: removeMarkdown(lines[0]),
+      body: lines.slice(1).join('\n'),
+    };
+  }
+
+  if (lines[0].indexOf('-#') === 0) {
+    return {
+      title: removeMarkdown(lines[0].slice(2).trim()),
+      body: lines.slice(1).join('\n'),
+    };
+  }
+
+  return { body };
+}
 
 function generatePreview(file, body) {
   let ret = body;
