@@ -18,7 +18,7 @@ module.exports = () => ({
         blog: {
           index: () => require('./layouts/BlogIndex').default,
           layout: () => require('./layouts/BlogPage').default,
-          sort: pages => _.sortBy(pages, 'date').reverse(),
+          transform: pages => _.sortBy(pages, 'date').reverse(),
           url: ({ sectionName, fileName }) => (
             `/${sectionName}/${_.trimStart(fileName, '0123456789-')}/`
           ),
@@ -31,7 +31,7 @@ module.exports = () => ({
       ),
       index: () => require('./layouts/WebpackIndex.jsx').default,
       layout: () => require('./layouts/ChapterPage.jsx').default,
-      sort: (pages) => {
+      transform: (pages) => {
         let order = require('./books/webpack-book/manuscript/Book.txt').split('\n').filter(id);
 
         const ret = [];
