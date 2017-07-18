@@ -1,7 +1,8 @@
 import React from 'react';
+import LatestPost from '../components/LatestPost';
 import SocialLinks from '../components/SocialLinks';
 
-const SiteIndex = () => (
+const SiteIndex = ({ section }) => (
   <div className="frontpage">
     <div className="front__heading">
       <div className="front-heading-content-wrapper">
@@ -41,9 +42,12 @@ const SiteIndex = () => (
 
     <div className="post post--front">
       <section className="post__content">
+        <LatestPost section={section} />
         <div dangerouslySetInnerHTML={{ __html: require('./index.md').body }} />
 
         <SocialLinks />
+
+        <LatestPost section={section} />
       </section>
     </div>
   </div>
