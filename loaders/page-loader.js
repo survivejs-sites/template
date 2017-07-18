@@ -43,7 +43,7 @@ module.exports = function pageLoader(source) {
 function parseTitle(body) {
   const lines = body.split('\n');
 
-  if (lines[0].indexOf('#') === 0) {
+  if (lines[0].indexOf('#') === 0 && lines[0][1] === ' ') {
     return {
       title: removeMarkdown(lines[0]),
       body: lines.slice(1).join('\n'),
