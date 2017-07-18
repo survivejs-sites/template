@@ -32,7 +32,7 @@ module.exports = function markdown() {
       return '';
     }
 
-    return '<p>' + text + '</p>\n';
+    return `<p>${text}</p>\n`;
   };
 
   return {
