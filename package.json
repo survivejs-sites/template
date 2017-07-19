@@ -9,7 +9,7 @@
     "build:netlify": "npm run fetch-books && npm run build",
     "deploy": "gh-pages -d build",
     "fetch-books": "scripts/fetch-books.sh",
-    "lint": "eslint . --ext jsx --ignore-path .gitignore --cache",
+    "lint": "eslint . --ext js --ext jsx --ignore-path .gitignore --cache",
     "test": "npm run lint",
     "prepush": "npm test"
   },

@@ -23,30 +23,30 @@ function parseChapters() {
     .filter(a => a);
 
   fileNames.forEach((fileName) => {
-      if (path.extname(fileName) === '.txt') {
-        return;
-      }
-
-      const filePath = path.join(process.cwd(), bookRoot, fileName);
-      const bookContent = fs.readFileSync(filePath, { encoding: 'utf8' });
-
-      if (!bookContent) {
-        return;
-      }
-
-      const title = parse.title(bookContent).title;
-      const sectionName = fileName.split('/')[0];
-      const url = webpackUrl({
-        fileName: path.basename(fileName, '.md'),
-        sectionName: 'webpack',
-      });
-
-      ret[title] = {
-        fileName,
-        sectionName,
-        url,
-      };
+    if (path.extname(fileName) === '.txt') {
+      return;
     }
+
+    const filePath = path.join(process.cwd(), bookRoot, fileName);
+    const bookContent = fs.readFileSync(filePath, { encoding: 'utf8' });
+
+    if (!bookContent) {
+      return;
+    }
+
+    const title = parse.title(bookContent).title;
+    const sectionName = fileName.split('/')[0];
+    const url = webpackUrl({
+      fileName: path.basename(fileName, '.md'),
+      sectionName: 'webpack',
+    });
+
+    ret[title] = {
+      fileName,
+      sectionName,
+      url,
+    };
+  }
   );
 
   cache = ret;
