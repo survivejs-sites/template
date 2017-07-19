@@ -4,11 +4,12 @@ const loaderUtils = require('loader-utils');
 const removeMarkdown = require('remove-markdown');
 const markdown = require('../utils/markdown');
 const highlight = require('../utils/highlight');
+const parse = require('../utils/parse');
 
 module.exports = function pageLoader(source) {
   const result = frontmatter(source);
 
-  const { title, body } = parseTitle(result.body);
+  const { title, body } = parse.title(result.body);
 
   result.attributes = result.attributes || {};
 
@@ -39,26 +40,6 @@ module.exports = function pageLoader(source) {
     }
   );
 };
-
-function parseTitle(body) {
-  const lines = body.split('\n');
-
-  if (lines[0].indexOf('#') === 0 && lines[0][1] === ' ') {
-    return {
-      title: removeMarkdown(lines[0]),
-      body: lines.slice(1).join('\n'),
-    };
-  }
-
-  if (lines[0].indexOf('-#') === 0) {
-    return {
-      title: removeMarkdown(lines[0].slice(2).trim()),
-      body: lines.slice(1).join('\n'),
-    };
-  }
-
-  return { body };
-}
 
 function generatePreview(file, body) {
   let ret = body;

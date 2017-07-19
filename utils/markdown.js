@@ -35,6 +35,18 @@ module.exports = function markdown() {
     return `<p>${text}</p>\n`;
   };
 
+  // XXXXX: This gets executed for all content. It would be better to constrain
+  // per book somehow.
+  renderer.em = function em(text) {
+    const webpackBook = require('./webpack-book');
+
+    // Perform a lookup against webpack book chapter definition to figure
+    // out whether to link or not
+    const match = webpackBook()[text];
+
+    return match ? `<a href="${match.url}">${text}</a>` : `<em>${text}</em>`;
+  };
+
   return {
     process(content, highlight) {
       const markedDefaults = {

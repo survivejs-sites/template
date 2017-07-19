@@ -1,4 +1,5 @@
 const marked = require('marked');
+const removeMarkdown = require('remove-markdown');
 
 function parseQuotes(data) {
   const tokens = marked.lexer(data).map((t) => {
@@ -41,7 +42,7 @@ function parseCustomQuote(token, match, className) {
         text: `${`<blockquote class="${className}">` +
           `<div class="tip-title"><i class="tip-icon ${icon}"></i>${className}</div>`}${
           text.slice(2).trim()
-          }</blockquote>`,
+        }</blockquote>`,
       };
     }
   }
@@ -49,3 +50,24 @@ function parseCustomQuote(token, match, className) {
   return token;
 }
 exports.customQuote = parseCustomQuote;
+
+function parseTitle(body) {
+  const lines = body.split('\n');
+
+  if (lines[0].indexOf('#') === 0 && lines[0][1] === ' ') {
+    return {
+      title: removeMarkdown(lines[0]),
+      body: lines.slice(1).join('\n'),
+    };
+  }
+
+  if (lines[0].indexOf('-#') === 0) {
+    return {
+      title: removeMarkdown(lines[0].slice(2).trim()),
+      body: lines.slice(1).join('\n'),
+    };
+  }
+
+  return { body };
+}
+exports.title = parseTitle;
