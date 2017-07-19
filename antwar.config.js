@@ -11,9 +11,7 @@ module.exports = () => ({
   layout: () => require('./layouts/SiteBody').default,
   paths: {
     '/': {
-      content: () => (
-        require.context('./pages', true, /^\.\/.*\.md$/)
-      ),
+      content: () => require.context('./pages', true, /^\.\/.*\.md$/),
       index: () => require('./layouts/SiteIndex').default,
       paths: {
         blog: {
@@ -27,9 +25,7 @@ module.exports = () => ({
       },
     },
     webpack: {
-      content: () => (
-        require.context('./books/webpack-book/manuscript', true, /^\.\/.*\.md$/)
-      ),
+      content: () => require.context('./books/webpack-book/manuscript', true, /^\.\/.*\.md$/),
       index: () => require('./layouts/WebpackIndex').default,
       layout: () => require('./layouts/BookPage').default,
       transform: (pages) => {
