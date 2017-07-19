@@ -30,7 +30,7 @@ module.exports = () => ({
       content: () => (
         require.context('./books/webpack-book/manuscript', true, /^\.\/.*\.md$/)
       ),
-      index: () => require('./layouts/BookIndex.jsx').default,
+      index: () => require('./layouts/WebpackIndex.jsx').default,
       layout: () => require('./layouts/BookPage.jsx').default,
       transform: (pages) => {
         let order = require('./books/webpack-book/manuscript/Book.txt').split('\n').filter(_.identity);
