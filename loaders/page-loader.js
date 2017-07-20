@@ -17,6 +17,11 @@ module.exports = function pageLoader(source) {
     result.attributes.title = title;
   }
 
+  result.attributes = _.merge(
+    result.attributes,
+    parse.header(this.resourcePath)
+  );
+
   result.preview = generatePreview(result, body);
   result.description = generateDescription(result);
   result.keywords = generateKeywords(result);

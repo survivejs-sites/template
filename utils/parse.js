@@ -1,5 +1,8 @@
+const path = require('path');
 const marked = require('marked');
 const removeMarkdown = require('remove-markdown');
+const clean = require('./clean');
+const headers = require('./headers');
 
 function parseQuotes(data) {
   const tokens = marked.lexer(data).map((t) => {
@@ -71,3 +74,40 @@ function parseTitle(body) {
   return { body };
 }
 exports.title = parseTitle;
+
+function parseHeader(resourcePath) {
+  const baseName = clean.chapterName(
+    path.basename(resourcePath, path.extname(resourcePath))
+  );
+  const header = headers[baseName];
+  const ret = {};
+
+  if (header) {
+    if (header.source && header.author && header.license) {
+      ret.headerExtra = `<a href="${header.source}">${header.author} (${header.license})</a>`;
+    } else if (header.license) {
+      ret.headerExtra = header.license;
+    }
+
+    ret.headerImage = `assets/img/headers/${header.image}`;
+
+    ret.type = parseType(resourcePath);
+  }
+
+  return ret;
+}
+exports.header = parseHeader;
+
+function parseType(resourcePath) {
+  const chapterPath = resourcePath.split('/manuscript/')[1];
+
+  if (chapterPath.split('/').length > 1) {
+    return 'chapter';
+  }
+
+  if (chapterPath === chapterPath.toLowerCase()) {
+    return 'intro';
+  }
+
+  return 'part';
+}
