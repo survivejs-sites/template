@@ -9,13 +9,11 @@ function parseQuotes(data) {
     if (t.type === 'paragraph') {
       return parseCustomQuote(t, 'T>', 'tip') ||
         parseCustomQuote(t, 'W>', 'warning') ||
-        parseCustomQuote(t, '?>', 'todo') ||
         t;
     }
 
     return t;
   });
-
   tokens.links = [];
 
   return tokens;
@@ -25,32 +23,18 @@ exports.quotes = parseQuotes;
 function parseCustomQuote(token, match, className) {
   if (token.type === 'paragraph') {
     const text = token.text;
-    let icon;
 
     if (text.indexOf(match) === 0) {
-      switch (className) {
-        case 'tip':
-          icon = 'icon-info';
-          break;
-        case 'warning':
-          icon = 'icon-warning';
-          break;
-        default:
-          icon = 'icon-chevron-right';
-          break;
-      }
+      const icon = className === 'tip' ? 'icon-attention-circled' : 'icon-attention';
 
       return {
         type: 'html',
-        text: `${`<blockquote class="${className}">` +
-          `<div class="tip-title"><i class="tip-icon ${icon}"></i>${className}</div>`}${
-          text.slice(2).trim()
-        }</blockquote>`,
+        text: `<blockquote class="${className}"><i class="${icon}"></i>${text.slice(2).trim()}</blockquote>`,
       };
     }
   }
 
-  return token;
+  return null;
 }
 exports.customQuote = parseCustomQuote;
 
