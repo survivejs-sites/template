@@ -1,94 +1,101 @@
-import _ from 'lodash';
 import React from 'react';
 
 import Disqus from '../components/Disqus';
-import Moment from '../components/Moment';
-import Author from '../components/Author';
+import Buy from '../components/Buy';
+import LatestPost from '../components/LatestPost';
+import Meta from '../components/Meta';
 import PrevNext from '../components/PrevNext';
 import PrevNextMini from '../components/PrevNextMini';
-import RelatedPosts from '../components/RelatedPosts';
+import Resources from '../components/Resources';
 import SocialLinks from '../components/SocialLinks';
-import getRelatedPosts from '../utils/get-related-posts';
+import Toc from '../components/Toc';
 
 const BookPage = ({
   page: {
     file: {
       attributes: {
-        author, date, headerExtra, headerImage, title,
+        endSource, demo, headerExtra, headerImage, title, resources,
       },
       body,
     },
-    keywords,
     previous,
     next,
+    type,
   },
   section,
-  config,
-}) => {
-  let postAuthor = author || (config.blog && config.blog.author);
-  const relatedPosts = getRelatedPosts(keywords, section.pages(), 10);
-  const relatedHeaders = {
-    interview: 'Interviews',
-    opinion: 'Opinions',
-    publishing: 'Publishing thoughts',
-  };
-
-  if (_.isFunction(postAuthor)) {
-    postAuthor = postAuthor();
-  }
-
-  return (
-    <div className="post__wrapper">
-      {headerImage &&
-        <div
-          className="header-image"
-          style={{
-            backgroundImage: `url(${headerImage})`,
-          }}
-        />
-      }
-
-      <h1 className="post__heading">{title}</h1>
-
-      <div className="toc-nav__wrapper">
-        <RelatedPosts title={title} posts={relatedPosts} headers={relatedHeaders} />
-      </div>
-
-      <div className="post">
-        <div className="post__content">
-          <div dangerouslySetInnerHTML={{ __html: body }} />
-          {headerExtra &&
-            <div
-              className="header-extra"
-              dangerouslySetInnerHTML={{ __html: headerExtra }}
-            />
-          }
-          {date && <Moment className="post__moment" datetime={date} /> }
-          {postAuthor && <Author author={postAuthor} />}
-
-          <SocialLinks type="blog post" />
-
-          <PrevNext
-            previous={previous}
-            next={next}
-            previousText="Previous post"
-            nextText="Next post"
-            getTitle={({ file }) => file && file.attributes && file.attributes.title}
-          />
-
-          <div id="disqus_thread" />
-        </div>
-      </div>
-
-      <PrevNextMini
-        previous={previous}
-        next={next}
-        getTitle={({ file }) => file && file.attributes && file.attributes.title}
+}) => (
+  <div className="chapter__wrapper">
+    {headerImage &&
+      <div
+        className="header-image"
+        style={{
+          backgroundImage: `url(${headerImage})`,
+        }}
       />
+    }
 
-      <Disqus shortname="survivejs" />
+    <h1 className="post__heading">{title}</h1>
+
+    {headerExtra &&
+      <div
+        className="header-extra"
+        dangerouslySetInnerHTML={{ __html: headerExtra }}
+      />
+    }
+
+    <div className="toc-nav__wrapper">
+      <h4 className="search-nav--header">Search</h4>
+
+      <input id="search" />
+
+      <h4 className="toc-nav--header">Table of Contents</h4>
+
+      <Toc sectionPages={() => section.pages().reverse()} title={title} />
+
+      <Resources resources={resources} />
+
+      <Buy sectionName={section.name} />
     </div>
-  );
-};
+
+    <div className="chapter">
+      <div className="post__content">
+        <LatestPost section={section} />
+
+        <Meta demo={demo} endSource={endSource} />
+
+        <div
+          className="chapter-content"
+          dangerouslySetInnerHTML={{ __html: body }}
+        />
+
+        <SocialLinks type={type} />
+
+        <PrevNext
+          previous={previous}
+          next={next}
+          previousText="Previous chapter"
+          nextText="Next chapter"
+        />
+
+        <blockquote className="tip">
+          {section.name === 'webpack' ?
+            <p>This book is available through <a href="https://leanpub.com/survivejs-webpack">Leanpub (digital)</a>, <a href="https://www.amazon.com/dp/9526868803">Amazon (paperback)</a>, and <a href="https://www.amazon.com/dp/B06XWZZGBS">Kindle (digital)</a>. By purchasing the book you support the development of further content. A part of profit (~30%) goes to Tobias Koppers, the author of webpack.</p> :
+            <p>This book is <a href="https://leanpub.com/survivejs-react">available through Leanpub</a>. By purchasing the book you support the development of further content.</p>
+          }
+        </blockquote>
+
+        <div id="disqus_thread" />
+      </div>
+    </div>
+
+    <PrevNextMini
+      previous={previous}
+      next={next}
+      getTitle={({ file }) => file && file.attributes && file.attributes.title}
+    />
+
+    <Disqus shortname="survivejs" />
+  </div>
+);
 
 export default BookPage;
