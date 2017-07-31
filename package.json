@@ -25,18 +25,18 @@
   },
   "homepage": "https://github.com/survivejs-sites/template#readme",
   "dependencies": {
-    "antwar": "^0.17.0",
+    "antwar": "^0.18.0",
     "front-matter": "^2.1.2",
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "moment": "^2.18.1",
-    "react-github-corner": "^0.3.0",
-    "react-router-dom": "^4.1.2",
-    "remove-markdown": "^0.2.0",
     "prism-languages": "^0.3.3",
     "prismjs": "^1.6.0",
     "react": "^15.6.1",
+    "react-github-corner": "^0.3.0",
+    "react-router-dom": "^4.1.2",
+    "remove-markdown": "^0.2.0",
     "title-case": "^2.1.1"
   },
   "devDependencies": {
@@ -52,8 +52,8 @@
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
-    "eslint": "^4.2.0",
-    "eslint-config-airbnb": "^15.0.2",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.1.0",
@@ -70,8 +70,8 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
-    "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.5.1",
+    "webpack": "^3.4.1",
+    "webpack-dev-server": "^2.6.1",
     "webpack-merge": "^4.1.0"
   }
 }

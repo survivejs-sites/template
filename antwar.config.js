@@ -29,38 +29,22 @@ module.exports = () => ({
       content: () => require.context('./books/webpack-book/manuscript', true, /^\.\/.*\.md$/),
       index: () => require('./layouts/WebpackIndex').default,
       layout: () => require('./layouts/BookPage').default,
-      transform: (pages) => {
-        let order = require('./books/webpack-book/manuscript/Book.txt').split('\n').filter(_.identity);
+      transform: pages => (
+        generateAdjacent(
+          require('./books/webpack-book/manuscript/Book.txt').split('\n')
+            .filter(name => path.extname(name) === '.md')
+            .map((fileName) => {
+              const result = _.find(pages, { fileName });
 
-        const ret = [];
+              if (!result) {
+                return console.error('Failed to find', fileName);
+              }
 
-        order = order.filter(name => path.extname(name) === '.md');
-
-        order.forEach((fileName) => {
-          const parts = fileName.split('/');
-          const chapterName = _.last(parts).split('.')[0];
-          const partName = parts.length > 1 ? `/${_.head(parts)}` : '';
-          const result = _.find(pages, {
-            fileName: chapterName,
-            sectionName: 'webpack',
-          });
-
-          if (!result) {
-            return console.error('Failed to find', chapterName, partName);
-          }
-
-          ret.push(result);
-
-          return null;
-        });
-
-        return generateAdjacent(ret);
-      },
-      url: ({ sectionName, fileName }) => {
-        const fixedFileName = clean.chapterName(fileName);
-
-        return `/${sectionName}/${fixedFileName}/`;
-      },
+              return result;
+            })
+        )
+      ),
+      url: ({ sectionName, fileName }) => `/${sectionName}/${clean.chapterName(fileName)}/`,
     },
   },
 });
