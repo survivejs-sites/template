@@ -28,7 +28,7 @@ const BuyWebpack = () => (
       <img
         alt="Webpack book cover"
         className="sidebar-cover"
-        src="/assets/img/webpack_title_page_small.png"
+        src={require('assets/img/webpack_title_page_small.png')}
         width="255"
         height="329"
       />
@@ -69,7 +69,7 @@ const BuyReact = () => (
       <img
         alt="React book cover"
         className="sidebar-cover"
-        src="/assets/img/react_title_page_small.png"
+        src={require('assets/img/react_title_page_small.png')}
         width="255"
         height="329"
       />
