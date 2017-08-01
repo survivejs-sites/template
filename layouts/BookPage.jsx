@@ -50,7 +50,7 @@ const BookPage = ({
 
       <h4 className="toc-nav--header">Table of Contents</h4>
 
-      <Toc sectionPages={() => section.pages().reverse()} title={title} />
+      <Toc sectionPages={section.pages} title={title} />
 
       <Resources resources={resources} />
 
