@@ -27,7 +27,6 @@
   "dependencies": {
     "antwar": "^0.18.0",
     "front-matter": "^2.1.2",
-    "is-url-external": "^1.0.3",
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
