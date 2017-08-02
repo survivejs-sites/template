@@ -20,9 +20,9 @@ module.exports = function markdown() {
     const id = raw.toLowerCase().replace(/`/g, '').replace(/[^\w]+/g, '-');
 
     return `<h${level} class="header">` +
-      `<a class="anchor" href="#${id}" id="${id}"></a>` +
+      `<a class="header-anchor" href="#${id}" id="${id}"></a>` +
       `<span class="text">${text}</span>` +
-      `<a class="icon-link" href="#${id}"></a>` +
+      `<a class="header-anchor-select" href="#${id}">#</a>` +
       `</h${level}>\n`;
   };
 
