@@ -12,7 +12,7 @@ const LatestPost = ({ section }) => {
     <div>
       <blockquote className="latestpost tip">
         <a className="latestpost-link" href={`/${post.url}`}>
-          {post.title}
+          {post.file.attributes.title}
         </a>
         <hr />
         <a className="latestpost-link" href="/clinic/">
