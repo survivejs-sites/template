@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 import Moment from '../components/Moment';
 
 const BlogIndex = ({ section }) => (

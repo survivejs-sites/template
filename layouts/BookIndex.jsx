@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../components/Link';
 
 const BookIndex = ({ section }) => (
   <div className="grid">

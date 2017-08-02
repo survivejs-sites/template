@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from './Link';
 
 const Toc = ({ sectionPages, title }) => (
   <ul className="toc-nav">
