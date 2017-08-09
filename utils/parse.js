@@ -1,15 +1,17 @@
-const path = require('path');
-const marked = require('marked');
-const removeMarkdown = require('remove-markdown');
-const clean = require('./clean');
-const headers = require('./headers');
+const path = require("path");
+const marked = require("marked");
+const removeMarkdown = require("remove-markdown");
+const clean = require("./clean");
+const headers = require("./headers");
 
 function parseQuotes(data) {
-  const tokens = marked.lexer(data).map((t) => {
-    if (t.type === 'paragraph') {
-      return parseCustomQuote(t, 'T>', 'tip') ||
-        parseCustomQuote(t, 'W>', 'warning') ||
-        t;
+  const tokens = marked.lexer(data).map(t => {
+    if (t.type === "paragraph") {
+      return (
+        parseCustomQuote(t, "T>", "tip") ||
+        parseCustomQuote(t, "W>", "warning") ||
+        t
+      );
     }
 
     return t;
@@ -21,15 +23,18 @@ function parseQuotes(data) {
 exports.quotes = parseQuotes;
 
 function parseCustomQuote(token, match, className) {
-  if (token.type === 'paragraph') {
+  if (token.type === "paragraph") {
     const text = token.text;
 
     if (text.indexOf(match) === 0) {
-      const icon = className === 'tip' ? 'icon-attention-circled' : 'icon-attention';
+      const icon =
+        className === "tip" ? "icon-attention-circled" : "icon-attention";
 
       return {
-        type: 'html',
-        text: `<blockquote class="${className}"><i class="${icon}"></i>${text.slice(2).trim()}</blockquote>`,
+        type: "html",
+        text: `<blockquote class="${className}"><i class="${icon}"></i>${text
+          .slice(2)
+          .trim()}</blockquote>`
       };
     }
   }
@@ -39,19 +44,19 @@ function parseCustomQuote(token, match, className) {
 exports.customQuote = parseCustomQuote;
 
 function parseTitle(body) {
-  const lines = body.split('\n');
+  const lines = body.split("\n");
 
-  if (lines[0].indexOf('#') === 0 && lines[0][1] === ' ') {
+  if (lines[0].indexOf("#") === 0 && lines[0][1] === " ") {
     return {
       title: removeMarkdown(lines[0]),
-      body: lines.slice(1).join('\n'),
+      body: lines.slice(1).join("\n")
     };
   }
 
-  if (lines[0].indexOf('-#') === 0) {
+  if (lines[0].indexOf("-#") === 0) {
     return {
       title: removeMarkdown(lines[0].slice(2).trim()),
-      body: lines.slice(1).join('\n'),
+      body: lines.slice(1).join("\n")
     };
   }
 
@@ -83,15 +88,15 @@ function parseHeader(resourcePath) {
 exports.header = parseHeader;
 
 function parseType(resourcePath) {
-  const chapterPath = resourcePath.split('/manuscript/')[1];
+  const chapterPath = resourcePath.split("/manuscript/")[1];
 
-  if (chapterPath.split('/').length > 1) {
-    return 'chapter';
+  if (chapterPath.split("/").length > 1) {
+    return "chapter";
   }
 
   if (chapterPath === chapterPath.toLowerCase()) {
-    return 'intro';
+    return "intro";
   }
 
-  return 'part';
+  return "part";
 }

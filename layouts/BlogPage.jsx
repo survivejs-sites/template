@@ -1,36 +1,34 @@
-import _ from 'lodash';
-import React from 'react';
+import _ from "lodash";
+import React from "react";
 
-import Disqus from '../components/Disqus';
-import Moment from '../components/Moment';
-import Author from '../components/Author';
-import PrevNext from '../components/PrevNext';
-import PrevNextMini from '../components/PrevNextMini';
-import RelatedPosts from '../components/RelatedPosts';
-import SocialLinks from '../components/SocialLinks';
-import getRelatedPosts from '../utils/get-related-posts';
+import Disqus from "../components/Disqus";
+import Moment from "../components/Moment";
+import Author from "../components/Author";
+import PrevNext from "../components/PrevNext";
+import PrevNextMini from "../components/PrevNextMini";
+import RelatedPosts from "../components/RelatedPosts";
+import SocialLinks from "../components/SocialLinks";
+import getRelatedPosts from "../utils/get-related-posts";
 
 const BlogPage = ({
   page: {
     file: {
-      attributes: {
-        author, date, headerExtra, headerImage, title,
-      },
-      body,
+      attributes: { author, date, headerExtra, headerImage, title },
+      body
     },
     keywords,
     previous,
-    next,
+    next
   },
   section,
-  config,
+  config
 }) => {
   let postAuthor = author || (config.blog && config.blog.author);
   const relatedPosts = getRelatedPosts(keywords, section.pages(), 10);
   const relatedHeaders = {
-    interview: 'Interviews',
-    opinion: 'Opinions',
-    publishing: 'Publishing thoughts',
+    interview: "Interviews",
+    opinion: "Opinions",
+    publishing: "Publishing thoughts"
   };
 
   if (_.isFunction(postAuthor)) {
@@ -43,15 +41,20 @@ const BlogPage = ({
         <div
           className="header-image"
           style={{
-            backgroundImage: `url(${headerImage})`,
+            backgroundImage: `url(${headerImage})`
           }}
-        />
-      }
+        />}
 
-      <h1 className="post__heading">{title}</h1>
+      <h1 className="post__heading">
+        {title}
+      </h1>
 
       <div className="toc-nav__wrapper">
-        <RelatedPosts title={title} posts={relatedPosts} headers={relatedHeaders} />
+        <RelatedPosts
+          title={title}
+          posts={relatedPosts}
+          headers={relatedHeaders}
+        />
       </div>
 
       <div className="post">
@@ -61,9 +64,8 @@ const BlogPage = ({
             <div
               className="header-extra"
               dangerouslySetInnerHTML={{ __html: headerExtra }}
-            />
-          }
-          {date && <Moment className="post__moment" datetime={date} /> }
+            />}
+          {date && <Moment className="post__moment" datetime={date} />}
           {postAuthor && <Author author={postAuthor} />}
 
           <SocialLinks type="blog post" />
@@ -73,7 +75,8 @@ const BlogPage = ({
             next={next}
             previousText="Previous post"
             nextText="Next post"
-            getTitle={({ file }) => file && file.attributes && file.attributes.title}
+            getTitle={({ file }) =>
+              file && file.attributes && file.attributes.title}
           />
 
           <div id="disqus_thread" />
@@ -83,7 +86,8 @@ const BlogPage = ({
       <PrevNextMini
         previous={previous}
         next={next}
-        getTitle={({ file }) => file && file.attributes && file.attributes.title}
+        getTitle={({ file }) =>
+          file && file.attributes && file.attributes.title}
       />
 
       <Disqus shortname="survivejs" />

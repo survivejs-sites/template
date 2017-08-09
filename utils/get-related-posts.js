@@ -1,12 +1,12 @@
 function getRelatedPosts(keywords, pages = [], limit) {
   const ret = {}; // keyword -> posts
 
-  (keywords || []).forEach((keyword) => {
+  (keywords || []).forEach(keyword => {
     if (!ret[keyword]) {
       ret[keyword] = [];
     }
 
-    (pages || []).forEach((page) => {
+    (pages || []).forEach(page => {
       if (page.keywords && page.keywords.indexOf(keyword) >= 0) {
         if (ret[keyword].length > limit) {
           return;

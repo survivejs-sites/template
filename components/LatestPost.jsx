@@ -1,8 +1,8 @@
-import React from 'react';
-import _ from 'lodash';
+import React from "react";
+import _ from "lodash";
 
 const LatestPost = ({ section }) => {
-  const post = _.reject(section.pages('blog'), ({ isDraft }) => isDraft)[0];
+  const post = _.reject(section.pages("blog"), ({ isDraft }) => isDraft)[0];
 
   if (!post) {
     return null;

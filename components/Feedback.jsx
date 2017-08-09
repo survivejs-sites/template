@@ -1,9 +1,9 @@
-import React from 'react';
-import GithubCorner from 'react-github-corner';
+import React from "react";
+import GithubCorner from "react-github-corner";
 
 const Feedback = ({ sectionName }) => {
-  if (sectionName !== 'react' || sectionName !== 'webpack') {
-    sectionName = 'site'; // eslint-disable-line no-param-reassign
+  if (sectionName !== "react" || sectionName !== "webpack") {
+    sectionName = "site"; // eslint-disable-line no-param-reassign
   }
 
   return (

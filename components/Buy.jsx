@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Buy = ({ sectionName }) => {
-  if (sectionName === 'webpack') {
+  if (sectionName === "webpack") {
     return (
       <div>
         <BuyWebpack />
@@ -22,13 +22,13 @@ const Buy = ({ sectionName }) => {
   );
 };
 
-const BuyWebpack = () => (
+const BuyWebpack = () =>
   <div className="buy-container">
     <a href="/webpack/foreword">
       <img
         alt="Webpack book cover"
         className="sidebar-cover"
-        src={require('assets/img/webpack_title_page_small.png')}
+        src={require("assets/img/webpack_title_page_small.png")}
         width="255"
         height="329"
       />
@@ -60,16 +60,15 @@ const BuyWebpack = () => (
         Buy Signed LE
       </a>
     </p>
-  </div>
-);
+  </div>;
 
-const BuyReact = () => (
+const BuyReact = () =>
   <div className="buy-container">
     <a href="/react/introduction">
       <img
         alt="React book cover"
         className="sidebar-cover"
-        src={require('assets/img/react_title_page_small.png')}
+        src={require("assets/img/react_title_page_small.png")}
         width="255"
         height="329"
       />
@@ -83,7 +82,6 @@ const BuyReact = () => (
         Buy at Leanpub
       </a>
     </p>
-  </div>
-);
+  </div>;
 
 export default Buy;

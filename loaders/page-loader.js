@@ -1,10 +1,10 @@
-const _ = require('lodash');
-const frontmatter = require('front-matter');
-const loaderUtils = require('loader-utils');
-const removeMarkdown = require('remove-markdown');
-const markdown = require('../utils/markdown');
-const highlight = require('../utils/highlight');
-const parse = require('../utils/parse');
+const _ = require("lodash");
+const frontmatter = require("front-matter");
+const loaderUtils = require("loader-utils");
+const removeMarkdown = require("remove-markdown");
+const markdown = require("../utils/markdown");
+const highlight = require("../utils/highlight");
+const parse = require("../utils/parse");
 
 module.exports = function pageLoader(source) {
   const result = frontmatter(source);
@@ -30,20 +30,21 @@ module.exports = function pageLoader(source) {
   delete result.frontmatter;
 
   if (result.attributes.headerImage) {
-    result.attributes.headerImage = `__IMG_START__${result.attributes.headerImage}__IMG_END__`;
+    result.attributes.headerImage = `__IMG_START__${result.attributes
+      .headerImage}__IMG_END__`;
   }
 
   const context = this;
 
-  return `module.exports = ${JSON.stringify(result)};`.replace(
-    /__IMG_START__([^,\]>]+)__IMG_END__/g, (match, src) => {
-      if (_.startsWith(src, 'http')) {
-        return src;
-      }
-
-      return `" + require(${loaderUtils.stringifyRequest(context, src)}) + "`;
+  return `module.exports = ${JSON.stringify(
+    result
+  )};`.replace(/__IMG_START__([^,\]>]+)__IMG_END__/g, (match, src) => {
+    if (_.startsWith(src, "http")) {
+      return src;
     }
-  );
+
+    return `" + require(${loaderUtils.stringifyRequest(context, src)}) + "`;
+  });
 };
 
 function generatePreview(file, body) {
@@ -72,7 +73,7 @@ function generateKeywords(file) {
   }
 
   if (_.isString(keywords)) {
-    return keywords.split(',');
+    return keywords.split(",");
   }
 
   return keywords;

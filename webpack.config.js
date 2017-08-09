@@ -1,18 +1,18 @@
-const path = require('path');
-const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const merge = require('webpack-merge');
-const autoprefixer = require('autoprefixer');
+const path = require("path");
+const webpack = require("webpack");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const merge = require("webpack-merge");
+const autoprefixer = require("autoprefixer");
 
-module.exports = (env) => {
+module.exports = env => {
   switch (env) {
-    case 'build':
+    case "build":
       return merge(commonConfig(), buildConfig());
-    case 'interactive':
+    case "interactive":
       return merge(commonConfig(), interactiveConfig());
-    case 'start':
+    case "start":
     default:
       return merge(commonConfig(), developmentConfig());
   }
@@ -24,66 +24,67 @@ function commonConfig() {
       rules: [
         {
           test: /\.(js|jsx)$/,
-          use: 'babel-loader',
+          use: "babel-loader",
           include: [
-            path.join(__dirname, 'components'),
-            path.join(__dirname, 'layouts'),
-            path.join(__dirname, 'pages'),
-          ],
+            path.join(__dirname, "components"),
+            path.join(__dirname, "layouts"),
+            path.join(__dirname, "pages")
+          ]
         },
         {
           test: /\.woff$/,
-          use: 'url-loader?prefix=font/&limit=5000&mimetype=application/font-woff',
+          use:
+            "url-loader?prefix=font/&limit=5000&mimetype=application/font-woff"
         },
         {
           test: /\.ttf$|\.eot$/,
-          use: 'file-loader?prefix=font/',
+          use: "file-loader?prefix=font/"
         },
         {
           test: /\.gif$/,
-          use: 'file-loader',
+          use: "file-loader"
         },
         {
           test: /\.jpg$/,
-          use: 'file-loader',
+          use: "file-loader"
         },
         {
           test: /\.png$/,
-          use: 'file-loader',
+          use: "file-loader"
         },
         {
           test: /\.svg$/,
-          use: 'raw-loader',
+          use: "raw-loader"
         },
         {
           test: /\.txt$/,
-          use: 'raw-loader',
+          use: "raw-loader"
         },
         {
           test: /\.md$/,
-          use: 'page-loader',
-        },
-      ],
+          use: "page-loader"
+        }
+      ]
     },
     plugins: [
       new CopyWebpackPlugin([
         {
-          from: './assets/extra/',
-          to: './assets/',
-        },
-      ]),
+          from: "./assets/extra/",
+          to: "./assets/"
+        }
+      ])
     ],
     resolve: {
       alias: {
-        assets: path.resolve(__dirname, 'assets'),
-        images: path.resolve(__dirname, 'books/webpack-book/manuscript/images'),
-      },
+        assets: path.resolve(__dirname, "assets"),
+        images: path.resolve(__dirname, "books/webpack-book/manuscript/images")
+      }
     },
     resolveLoader: {
       alias: {
-        'page-loader': path.resolve(__dirname, 'loaders/page-loader.js'),
-      },
-    },
+        "page-loader": path.resolve(__dirname, "loaders/page-loader.js")
+      }
+    }
   };
 }
 
@@ -91,17 +92,17 @@ function interactiveConfig() {
   return {
     resolve: {
       alias: {
-        react: 'preact-compat/dist/preact-compat.min.js',
-        'react-dom': 'preact-compat/dist/preact-compat.min.js',
-      },
+        react: "preact-compat/dist/preact-compat.min.js",
+        "react-dom": "preact-compat/dist/preact-compat.min.js"
+      }
     },
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
         compress: {
-          warnings: false,
-        },
-      }),
-    ],
+          warnings: false
+        }
+      })
+    ]
   };
 }
 
@@ -111,29 +112,24 @@ function developmentConfig() {
       rules: [
         {
           test: /\.css$/,
-          use: [
-            'style-loader',
-            'css-loader',
-          ],
+          use: ["style-loader", "css-loader"]
         },
         {
           test: /\.scss$/,
           use: [
-            'style-loader',
-            'css-loader',
+            "style-loader",
+            "css-loader",
             {
-              loader: 'postcss-loader',
+              loader: "postcss-loader",
               options: {
-                plugins: () => ([
-                  autoprefixer({ browsers: ['last 2 versions'] }),
-                ]),
-              },
+                plugins: () => [autoprefixer({ browsers: ["last 2 versions"] })]
+              }
             },
-            'sass-loader',
-          ],
-        },
-      ],
-    },
+            "sass-loader"
+          ]
+        }
+      ]
+    }
   };
 }
 
@@ -144,36 +140,36 @@ function buildConfig() {
         {
           test: /\.css$/,
           use: ExtractTextPlugin.extract({
-            use: 'css-loader',
-            fallback: 'style-loader',
-          }),
+            use: "css-loader",
+            fallback: "style-loader"
+          })
         },
         {
           test: /\.scss$/,
           loader: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
+            fallback: "style-loader",
             use: [
-              'css-loader',
+              "css-loader",
               {
-                loader: 'postcss-loader',
+                loader: "postcss-loader",
                 options: {
-                  plugins: () => ([
-                    autoprefixer({ browsers: ['last 2 versions'] }),
-                  ]),
-                },
+                  plugins: () => [
+                    autoprefixer({ browsers: ["last 2 versions"] })
+                  ]
+                }
               },
-              'sass-loader',
-            ],
-          }),
-        },
-      ],
+              "sass-loader"
+            ]
+          })
+        }
+      ]
     },
     plugins: [
       new ExtractTextPlugin({
-        filename: '[name].[chunkhash].css',
-        allChunks: true,
+        filename: "[name].[chunkhash].css",
+        allChunks: true
       }),
-      new CleanWebpackPlugin(['build']),
-    ],
+      new CleanWebpackPlugin(["build"])
+    ]
   };
 }

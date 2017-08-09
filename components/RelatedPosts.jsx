@@ -1,11 +1,9 @@
-import _ from 'lodash';
-import React from 'react';
-import titleCase from 'title-case';
-import Toc from './Toc';
+import _ from "lodash";
+import React from "react";
+import titleCase from "title-case";
+import Toc from "./Toc";
 
-const RelatedPosts = ({
-  title, posts, headers,
-}) => (
+const RelatedPosts = ({ title, posts, headers }) =>
   <div>
     {_.map(posts, (pages, name) => {
       if (pages.length < 2) {
@@ -14,13 +12,14 @@ const RelatedPosts = ({
 
       return (
         <div key={`related-posts-${name}`}>
-          <h4 className="toc-nav--header">{headers[name] || titleCase(name)}</h4>
+          <h4 className="toc-nav--header">
+            {headers[name] || titleCase(name)}
+          </h4>
 
           <Toc sectionPages={() => pages} title={title} />
         </div>
       );
     })}
-  </div>
-);
+  </div>;
 
 export default RelatedPosts;
