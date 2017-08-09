@@ -20,8 +20,6 @@ const PrevNext = ({
     style = {};
   }
 
-  console.log(previous, getTitle(previous));
-
   return (
     <div className="new-prevnext">
       {previous
