@@ -5,7 +5,7 @@ const clean = require("./utils/clean");
 
 module.exports = () => ({
   template: {
-    title: "Template",
+    title: "SurviveJS",
     file: path.resolve(__dirname, "templates/page.ejs")
   },
   output: "build",
