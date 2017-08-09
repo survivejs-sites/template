@@ -19,8 +19,7 @@ module.exports = () => ({
           index: () => require("./layouts/BlogIndex").default,
           layout: () => require("./layouts/BlogPage").default,
           transform: pages => _.sortBy(pages, "date").reverse(),
-          url: ({ sectionName, fileName }) =>
-            `/${sectionName}/${_.trimStart(fileName, "0123456789-")}/`
+          url: ({ fileName }) => `/${clean.chapterName(fileName)}/`
         }
       }
     },
