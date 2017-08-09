@@ -18,7 +18,8 @@ module.exports = () => ({
         blog: {
           index: () => require("./layouts/BlogIndex").default,
           layout: () => require("./layouts/BlogPage").default,
-          transform: pages => _.sortBy(pages, "date").reverse(),
+          transform: pages =>
+            generateAdjacent(_.sortBy(pages, "date")).reverse(),
           url: ({ fileName }) => `/${clean.chapterName(fileName)}/`
         }
       }
