@@ -12,9 +12,6 @@ module.exports = function markdown() {
     const height = textParts[2] || "";
     const className = textParts[3] || "";
 
-    // TODO: resolve against full paths here somehow - needs context info!
-    // images: path.resolve(__dirname, 'books/webpack-book/manuscript/images'),
-
     return `<img src="__IMG_START__${href}__IMG_END__" alt="${alt}" class="${className}" width="${width}" height="${height}" />`;
   };
 
