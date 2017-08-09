@@ -1,13 +1,16 @@
 import _ from "lodash";
 import React from "react";
 
-import Disqus from "../components/Disqus";
-import Moment from "../components/Moment";
-import Author from "../components/Author";
-import PrevNext from "../components/PrevNext";
-import PrevNextMini from "../components/PrevNextMini";
-import RelatedPosts from "../components/RelatedPosts";
-import SocialLinks from "../components/SocialLinks";
+import {
+  Disqus,
+  Moment,
+  Author,
+  PrevNext,
+  PrevNextMini,
+  RelatedPosts,
+  SocialLinks
+} from "@survivejs/components";
+
 import getRelatedPosts from "../utils/get-related-posts";
 
 const BlogPage = ({

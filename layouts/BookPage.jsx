@@ -1,14 +1,16 @@
 import React from "react";
 
-import Disqus from "../components/Disqus";
-import Buy from "../components/Buy";
-import LatestPost from "../components/LatestPost";
-import Meta from "../components/Meta";
-import PrevNext from "../components/PrevNext";
-import PrevNextMini from "../components/PrevNextMini";
-import Resources from "../components/Resources";
-import SocialLinks from "../components/SocialLinks";
-import Toc from "../components/Toc";
+import {
+  Disqus,
+  Buy,
+  LatestPost,
+  Meta,
+  PrevNext,
+  PrevNextMini,
+  Resources,
+  SocialLinks,
+  Toc
+} from "@survivejs/components";
 
 const BookPage = ({
   page: {

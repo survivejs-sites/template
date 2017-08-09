@@ -1,5 +1,5 @@
 import React from "react";
-import Testimonial from "../components/Testimonial";
+import { Testimonial } from "@survivejs/components";
 
 const WebpackIndex = () =>
   <div className="frontpage">

@@ -1,7 +1,6 @@
 import React from "react";
 import _ from "lodash";
-import Link from "../components/Link";
-import Moment from "../components/Moment";
+import { Link, Moment } from "@survivejs/components";
 
 const BlogIndex = ({ section }) =>
   <div className="grid">
