@@ -9,7 +9,7 @@ const PrevNext = ({
   getTitle = () => {}
 }) => {
   if (!(next || previous)) {
-    return <div className="prevnext" />;
+    return <div className="new-prevnext" />;
   }
 
   // XXX: make sure page spans whole container if it's the only one
@@ -20,38 +20,41 @@ const PrevNext = ({
     style = {};
   }
 
+  console.log(previous, getTitle(previous));
+
   return (
-    <div className="prevnext">
+    <div className="new-prevnext">
       {previous
-        ? <div className="prevnext__prev" style={style}>
-            {previous.headerImage &&
+        ? <div className="new-prevnext__prev" style={style}>
+            {previous.file.attributes.headerImage &&
               <div
-                className="prevnext__bg"
+                className="new-prevnext__bg"
                 style={{
-                  backgroundImage: `url(${previous.headerImage})`
+                  backgroundImage: `url(${previous.file.attributes
+                    .headerImage})`
                 }}
               />}
-            <span className="prevnext__info">
+            <span className="new-prevnext__info">
               {previousText}
             </span>
-            <Link className="prevnext__link" to={previous.url}>
+            <Link className="new-prevnext__link" to={previous.url}>
               {getTitle(previous)}
             </Link>
           </div>
         : null}
       {next
-        ? <div className="prevnext__next" style={style}>
-            {next.headerImage &&
+        ? <div className="new-prevnext__next" style={style}>
+            {next.file.attributes.headerImage &&
               <div
-                className="prevnext__bg"
+                className="new-prevnext__bg"
                 style={{
-                  backgroundImage: `url(${next.headerImage})`
+                  backgroundImage: `url(${next.file.attributes.headerImage})`
                 }}
               />}
-            <span className="prevnext__info">
+            <span className="new-prevnext__info">
               {nextText}
             </span>
-            <Link className="prevnext__link" to={next.url}>
+            <Link className="new-prevnext__link" to={next.url}>
               {getTitle(next)}
             </Link>
           </div>

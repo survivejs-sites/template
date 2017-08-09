@@ -75,8 +75,7 @@ const BlogPage = ({
             next={next}
             previousText="Previous post"
             nextText="Next post"
-            getTitle={({ file }) =>
-              file && file.attributes && file.attributes.title}
+            getTitle={page => page.file.attributes.title}
           />
 
           <div id="disqus_thread" />
@@ -86,8 +85,7 @@ const BlogPage = ({
       <PrevNextMini
         previous={previous}
         next={next}
-        getTitle={({ file }) =>
-          file && file.attributes && file.attributes.title}
+        getTitle={page => page.file.attributes.title}
       />
 
       <Disqus shortname="survivejs" />

@@ -80,6 +80,7 @@ const BookPage = ({
           next={next}
           previousText="Previous chapter"
           nextText="Next chapter"
+          getTitle={page => page.file.attributes.title}
         />
 
         <blockquote className="tip">
@@ -114,7 +115,7 @@ const BookPage = ({
     <PrevNextMini
       previous={previous}
       next={next}
-      getTitle={({ file }) => file && file.attributes && file.attributes.title}
+      getTitle={page => page.file.attributes.title}
     />
 
     <Disqus shortname="survivejs" />

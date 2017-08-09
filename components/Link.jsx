@@ -1,12 +1,12 @@
 import React from "react";
 import { Link as RRLink } from "react-router-dom";
 
-const Link = ({ to, children }) =>
+const Link = ({ to, children, ...props }) =>
   /^https?:\/\//.test(to)
-    ? <a href={to}>
+    ? <a href={to} {...props}>
         {children}
       </a>
-    : <RRLink to={to}>
+    : <RRLink to={to} {...props}>
         {children}
       </RRLink>;
 
