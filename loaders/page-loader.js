@@ -1,3 +1,4 @@
+const _path = require("path");
 const _ = require("lodash");
 const frontmatter = require("front-matter");
 const loaderUtils = require("loader-utils");
@@ -35,6 +36,7 @@ module.exports = function pageLoader(source) {
   }
 
   const context = this;
+  const resolve = resolveAliases(context.resource);
 
   return `module.exports = ${JSON.stringify(
     result
@@ -43,9 +45,32 @@ module.exports = function pageLoader(source) {
       return src;
     }
 
-    return `" + require(${loaderUtils.stringifyRequest(context, src)}) + "`;
+    return `" + require(${loaderUtils.stringifyRequest(
+      context,
+      resolve(src)
+    )}) + "`;
   });
 };
+
+function resolveAliases(resource) {
+  const relativePath = _path.relative(process.cwd(), resource);
+
+  return src => {
+    if (!src.startsWith("images")) {
+      return src;
+    }
+
+    if (relativePath.startsWith("books/react-book")) {
+      return `books/react-book/manuscript/${src}`;
+    }
+
+    if (relativePath.startsWith("books/webpack-book")) {
+      return `books/webpack-book/manuscript/${src}`;
+    }
+
+    return src;
+  };
+}
 
 function generatePreview(file, body) {
   let ret = body;

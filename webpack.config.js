@@ -77,7 +77,7 @@ function commonConfig() {
     resolve: {
       alias: {
         assets: path.resolve(__dirname, "assets"),
-        images: path.resolve(__dirname, "books/webpack-book/manuscript/images")
+        books: path.resolve(__dirname, "books")
       }
     },
     resolveLoader: {
