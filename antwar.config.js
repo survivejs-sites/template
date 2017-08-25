@@ -1,7 +1,6 @@
 const _ = require("lodash");
 const path = require("path");
-const generateAdjacent = require("./utils/generate-adjacent");
-const clean = require("./utils/clean");
+const { generateAdjacent, clean } = require("@survivejs/utils");
 
 module.exports = () => ({
   template: {

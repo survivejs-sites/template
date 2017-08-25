@@ -2,7 +2,7 @@
 // useful for linking
 const fs = require("fs");
 const path = require("path");
-const parse = require("./parse");
+const { parse } = require("@survivejs/utils");
 
 const webpackUrl = require("../antwar.config.js")().paths.webpack.url;
 

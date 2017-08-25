@@ -10,8 +10,7 @@ import {
   RelatedPosts,
   SocialLinks
 } from "@survivejs/components";
-
-import getRelatedPosts from "../utils/get-related-posts";
+const { getRelatedPosts } = require("@survivejs/utils");
 
 const BlogPage = ({
   page: {
