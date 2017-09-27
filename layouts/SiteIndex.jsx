@@ -1,7 +1,7 @@
 import React from "react";
 import { LatestPost, SocialLinks } from "@survivejs/components";
 
-const SiteIndex = ({ section }) =>
+const SiteIndex = ({ section }) => (
   <div className="frontpage">
     <div className="front__heading">
       <div className="front-heading-content-wrapper">
@@ -64,7 +64,8 @@ const SiteIndex = ({ section }) =>
         <LatestPost section={section} />
       </section>
     </div>
-  </div>;
+  </div>
+);
 SiteIndex.description =
   "Want to learn webpack or React? Get started for free and build a Kanban board by following the example project.";
 
